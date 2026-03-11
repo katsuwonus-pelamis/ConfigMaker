@@ -3,8 +3,8 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "my_lib"
-version = "0.1.0"
+name = "ConfigMaker"
+version = "1.0.0"
 dependencies = [
     "numpy", # Add any libraries your code needs here
     "pandas"
