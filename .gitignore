@@ -1,5 +1,6 @@
 __pycache__/
 *.pyc
+*.rod
 .DS_Store
 dist/
 build/

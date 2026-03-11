@@ -13,7 +13,7 @@ class Cell:
     lattice_vectors = [[a, 0, 0],                        
                         [0, a, 0],                
                         [0,0, l+a]],
-    particles=[ Spherocylinder([0, 0, 0], diam, 1, 'a')]
+    particles=[Spherocylinder([0, 0, 0],ori, diam, 'a')]
     )
     return cubic_cell
   
