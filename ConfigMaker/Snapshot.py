@@ -31,6 +31,10 @@ class Snapshot:
     self.box[axis] *= factor
     for part in self.particles:
       part.pos[axis] *= factor
+      
+  def scale_config(self, factor):
+    for i, _ in enumerate(self.box):
+      self.stretch_config(factor, i)
   
   
   # Missing a labeling of the particles, I will work on it when samples are purer
@@ -65,3 +69,5 @@ class Snapshot:
             new_particles.append(Spherocylinder(new_pos, list(part.ori), part.diameter, part.specie))
     box = nx * a1 + ny * a2 + nz * a3
     return Snapshot(len(new_particles), box.tolist(), new_particles)
+    
+  
