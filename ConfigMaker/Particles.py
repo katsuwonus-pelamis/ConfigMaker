@@ -20,7 +20,12 @@ class Spherocylinder:
       pos_str = " ".join(str(x) for x in self.pos)
       ori_str = " ".join(str(x) for x in self.ori)
       f.write(f"{self.specie} {pos_str} {self.diameter} {ori_str}\n")
-      
+  
+  def from_sphere(sphere, length, ori_axis = 2):
+    ori =  np.zeros(3)
+    ori[ori_axis] = length
+    return Spherocylinder(sphere.pos,ori,sphere.radius*2, sphere.specie)
+  
   def csv_to_rod(row):
     pos = [row['POSITION_X'], row['POSITION_Y'], row['POSITION_Z']] 
     ori = [np.cos(float(row["ELLIPSE_THETA"]))*float(row["ELLIPSE_MAJOR"]), np.sin(float(row["ELLIPSE_THETA"]))*float(row["ELLIPSE_MAJOR"]), 0]

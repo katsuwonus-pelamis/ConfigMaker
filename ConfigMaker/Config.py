@@ -4,6 +4,7 @@ import pandas as pd
 import os
 
 class Config:
+
   def __init__(self, nframes, frames):
     self.nframes = nframes
     self.frames = frames

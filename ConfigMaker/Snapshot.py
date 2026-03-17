@@ -75,6 +75,35 @@ class Snapshot:
     box = nx * a1 + ny * a2 + nz * a3
     return Snapshot(len(new_particles), box.tolist(), new_particles)
   
-    
+  def sph_to_rod(sph_snapshot, length, ori_axis = 2):
+    rods = []
+    rmax = 0
+    for sph in sph_snapshot.particles:
+      rods.append(Spherocylinder.from_sphere(sph, length, ori_axis=2))
+      if sph.radius > rmax:
+        rmax = sph.radius
+    box = sph_snapshot.box
+    box[ori_axis] = length+rmax*2 
+    return Snapshot(sph_snapshot.NPart,box, rods)
+  
+  # now giving every single layer, will implement a version that does the same over and over
+  
+  def pile(layers, layer_height, layering_axis = 2):
+    nlayers = len(layers)
+    heights = np.arange(0,  nlayers * layer_height, layer_height)
+    box = np.zeros(3)
+    particles = []
+    for i, layer in enumerate(layers):
+      for j, x in enumerate(layer.box):
+        if box[j]< x:
+          box[j] = x
+          
+      for _, part in enumerate(layer.particles):
+        particles.append(part)
+        particles[-1].pos[layering_axis] = heights[i]
+        
+    box[layering_axis] = heights[-1] + layers[-1].box[layering_axis]
+    NPart = len(particles)
+    return Snapshot(NPart, box, particles)
     
   
