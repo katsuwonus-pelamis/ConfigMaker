@@ -10,7 +10,6 @@ class Config:
     
   def read(filename):
     frames = []
-    print(os.path.splitext(filename))
     ext = os.path.splitext(filename)[1]
     particle_type = 'spherocylinder' if ext == '.rod' else 'sphere' if ext == '.sph' else None
     
