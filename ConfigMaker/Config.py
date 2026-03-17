@@ -1,6 +1,7 @@
 from .Snapshot import *
 import numpy as np
 import pandas as pd
+import os
 
 class Config:
   def __init__(self, nframes, frames):
@@ -9,9 +10,13 @@ class Config:
     
   def read(filename):
     frames = []
+    print(os.path.splitext(filename))
+    ext = os.path.splitext(filename)[1]
+    particle_type = 'spherocylinder' if ext == '.rod' else 'sphere' if ext == '.sph' else None
+    
     with open(filename, 'r') as f:
         while True:
-            snap = Snapshot.read(f)
+            snap = Snapshot.read(f, particle_type)
             if snap is None:
                 break
             frames.append(snap)

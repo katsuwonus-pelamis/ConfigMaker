@@ -28,3 +28,27 @@ class Spherocylinder:
   
   def get_volume(self):
     return np.pi * self.diameter**2 * (np.linalg.norm(self.ori)+ 2./3. * self.diameter)/ 4
+  
+  
+class Sphere:
+
+  def __init__(self, pos, radius, specie):
+    self.pos = pos
+    self.radius = radius
+    self.specie = specie
+
+  def read(line):
+    parts = line.strip().split()
+    specie = parts[0]
+    pos = [float(parts[1]), float(parts[2]), float(parts[3])]
+    radius = float(parts[4])
+    return Sphere(pos, radius, specie)
+  
+  def write(self, filename):
+    with open(filename, 'a') as f:
+      pos_str = " ".join(str(x) for x in self.pos)
+      f.write(f"{self.specie} {pos_str} {self.radius}\n")
+      
+  
+  def get_volume(self):
+    return 4./3. * np.pi * self.radius**3

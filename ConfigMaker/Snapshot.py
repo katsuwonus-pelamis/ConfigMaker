@@ -1,4 +1,4 @@
-from .Spherocylinder import * 
+from .Particles import * 
 import numpy as np
 
 class Snapshot:
@@ -7,13 +7,18 @@ class Snapshot:
     self.box = box
     self.particles = particles
 
-  def read(f):
+  def read(f, particle_type):
     npart_line = f.readline()
     if not npart_line.strip():
         return None
     npart = int(npart_line.strip())
     box = [float(x) for x in f.readline().strip().split()]
-    particles = [Spherocylinder.read(f.readline()) for _ in range(npart)]
+    if particle_type == 'spherocylinder':
+        particles = [Spherocylinder.read(f.readline()) for _ in range(npart)]
+    elif particle_type == 'sphere':
+        particles = [Sphere.read(f.readline()) for _ in range(npart)]
+    else:
+        raise ValueError("Unknown particle type")
     return Snapshot(npart, box, particles)
   
   def write(self, filename):
@@ -69,5 +74,7 @@ class Snapshot:
             new_particles.append(Spherocylinder(new_pos, list(part.ori), part.diameter, part.specie))
     box = nx * a1 + ny * a2 + nz * a3
     return Snapshot(len(new_particles), box.tolist(), new_particles)
+  
+    
     
   

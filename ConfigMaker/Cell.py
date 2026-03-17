@@ -1,5 +1,5 @@
 import numpy as np
-from .Spherocylinder import *
+from .Particles import *
 
 class Cell:
   def __init__(self, lattice_vectors, particles):

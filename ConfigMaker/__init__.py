@@ -1,4 +1,4 @@
 from .Cell import *
-from .Spherocylinder import *
+from .Particles import *
 from .Snapshot import *
 from .Config import *
