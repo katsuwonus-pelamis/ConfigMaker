@@ -118,4 +118,5 @@ class Snapshot:
       p for p in self.particles 
       if all(0 <= p.pos[i] < self.box[i] for i in range(3))
     ]
+    self.NPart = len(self.particles)
     
