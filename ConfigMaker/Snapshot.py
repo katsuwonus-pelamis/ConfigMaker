@@ -106,4 +106,9 @@ class Snapshot:
     NPart = len(particles)
     return Snapshot(NPart, box, particles)
     
+  ## Never tested, it most likely needs a function "rotate lattice" to be an effective """crystallographic""" tool  
+ #   def apply_pbc():
+ ##     for i, part in enumerate(self.particles):
+  #      part.pos = np.mod(part.pos, self.box)
+        
   

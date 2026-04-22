@@ -17,11 +17,11 @@ class Cell:
     )
     return cubic_cell
   
-  def fcc_cell(a, l, diam=1): #This is clearly not a minimal cell, but it's what we need to tile with orthogonal vectors and with the rods aligned in the (0 0 1) direction
+  def hex_cell(a, l, diam=1): #This is clearly not a minimal cell, but it's what we need to tile with orthogonal vectors and with the rods aligned in the (0 0 1) direction
     ori = [0,0,l]
     h_step = l + np.sqrt(2/3) * a
 
-    fcc_cell = Cell(
+    hex_cell = Cell(
       lattice_vectors = [[2 * a, 0, 0],                        
                         [0, np.sqrt(3) * a, 0],                
                         [0, 0, 3*h_step]],
@@ -39,6 +39,6 @@ class Cell:
                   Spherocylinder([0.5*a,     (np.sqrt(3)/2 + np.sqrt(3)/3)*a,2*h_step], ori, diam, 'a'),
                   Spherocylinder([1.5*a,     (np.sqrt(3)/2 + np.sqrt(3)/3)*a,2*h_step], ori, diam, 'a')]
       )
-    return fcc_cell
+    return hex_cell
     
     
