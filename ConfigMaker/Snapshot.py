@@ -107,8 +107,15 @@ class Snapshot:
     return Snapshot(NPart, box, particles)
     
   ## Never tested, it most likely needs a function "rotate lattice" to be an effective """crystallographic""" tool  
- #   def apply_pbc():
+ #   def apply_pbc(self):
  ##     for i, part in enumerate(self.particles):
   #      part.pos = np.mod(part.pos, self.box)
+      
+  ## esoteric pythonic syntax    
         
-  
+  def erase_externals(self):
+    self.particles = [
+      p for p in self.particles 
+      if all(0 <= p.pos[i] < self.box[i] for i in range(3))
+    ]
+    
