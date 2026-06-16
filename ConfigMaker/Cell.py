@@ -48,9 +48,9 @@ class Cell:
     lattice_vectors = [[a, 0, 0],                        
                         [0, a, 0],                
                         [0,0, 2*h_step]],
-    particles=[Spherocylinder([0, 0, 0],ori, diam1, 'a')],
-    particles=[Spherocylinder([np.sqrt(2)*a, np.sqrt(2)*a, 0],ori, diam2, 'b')],
-    particles=[Spherocylinder([0, 0, h_step], ori, diam2, 'b')],
-    particles=[Spherocylinder([np.sqrt(2)*a, np.sqrt(2)*a, h_step], ori, diam1, 'a')]
+    particles=[Spherocylinder([0, 0, 0],ori, diam1, 'a'),
+    Spherocylinder([np.sqrt(2)*a, np.sqrt(2)*a, 0],ori, diam2, 'b'),
+    Spherocylinder([0, 0, h_step], ori, diam2, 'b'),
+    Spherocylinder([np.sqrt(2)*a, np.sqrt(2)*a, h_step], ori, diam1, 'a')]
     )
     return cubic_cell
