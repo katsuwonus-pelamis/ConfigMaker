@@ -41,4 +41,16 @@ class Cell:
       )
     return hex_cell
     
-    
+  def S1_AB_cell(a, l, diam1 = 1, diam2 = 0.4):
+    ori = [0,0,l]
+    h_step = l + np.sqrt(2) * a
+    cubic_cell = Cell(
+    lattice_vectors = [[a, 0, 0],                        
+                        [0, a, 0],                
+                        [0,0, 2*h_step]],
+    particles=[Spherocylinder([0, 0, 0],ori, diam1, 'a')],
+    particles=[Spherocylinder([np.sqrt(2)*a, np.sqrt(2)*a, 0],ori, diam2, 'b')],
+    particles=[Spherocylinder([0, 0, h_step], ori, diam2, 'b')],
+    particles=[Spherocylinder([np.sqrt(2)*a, np.sqrt(2)*a, h_step], ori, diam1, 'a')]
+    )
+    return cubic_cell
