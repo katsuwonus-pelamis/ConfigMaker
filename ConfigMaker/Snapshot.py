@@ -111,7 +111,9 @@ class Snapshot:
  ##     for i, part in enumerate(self.particles):
   #      part.pos = np.mod(part.pos, self.box)
       
-  ## esoteric pythonic syntax    
+  ## esoteric pythonic syntax 
+  # ERASES all particles whose center is outside of the box
+  # RISKY FUNCTION, NO GUARANTEE THAT THE RODS DON'T OVERLAP UNDER PBCs 
         
   def erase_externals(self):
     self.particles = [
