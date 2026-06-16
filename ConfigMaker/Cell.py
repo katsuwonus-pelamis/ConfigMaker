@@ -43,7 +43,7 @@ class Cell:
     
   def S1_AB_cell(a, l, diam1 = 1, diam2 = 0.4):
     ori = [0,0,l]
-    h_step = l + np.sqrt(2) * a
+    h_step = l + np.sqrt(2)/2 * a
     cubic_cell = Cell(
     lattice_vectors = [[a, 0, 0],                        
                         [0, a, 0],                
