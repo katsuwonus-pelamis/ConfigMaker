@@ -45,12 +45,12 @@ class Cell:
     ori = [0,0,l]
     h_step = l + np.sqrt(2)/2 * a
     cubic_cell = Cell(
-    lattice_vectors = [[a, 0, 0],                        
+    lattice_vectors = [ [a, 0, 0],                        
                         [0, a, 0],                
                         [0,0, 2*h_step]],
-    particles=[Spherocylinder([0, 0, 0],ori, diam1, 'a'),
-    Spherocylinder([np.sqrt(2)*a/2., np.sqrt(2)*a/2., 0],ori, diam2, 'b'),
-    Spherocylinder([0, 0, h_step], ori, diam2, 'b'),
-    Spherocylinder([np.sqrt(2)*a/2., np.sqrt(2)*a/2., h_step], ori, diam1, 'a')]
+    particles=[ Spherocylinder([0, 0, 0], ori, diam1, 'a'),
+                Spherocylinder([a/2., a/2., 0],ori, diam2, 'b'),
+                Spherocylinder([0, 0, h_step], ori, diam2, 'b'),
+                Spherocylinder([a/2., a/2., h_step], ori, diam1, 'a')]
     )
     return cubic_cell
