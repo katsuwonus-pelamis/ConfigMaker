@@ -63,7 +63,7 @@ class Snapshot:
     return occ_vol
     
   def get_packfrac(self):
-    return self.get_occvol/self.get_boxvol()
+    return self.get_occvol()/self.get_boxvol()
   
   def tile(cell, nx, ny, nz):
     a1, a2, a3 = cell.lattice_vectors
