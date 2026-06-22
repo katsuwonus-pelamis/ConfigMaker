@@ -56,11 +56,14 @@ class Snapshot:
   def get_ndensity(self):
     return self.NPart/self.get_boxvol()
   
-  def get_packfrac(self):
+  def get_occvol(self):
     occ_vol = 0
     for part in self.particles:
       occ_vol+= part.get_volume()
-    return occ_vol/self.get_boxvol()
+    return occ_vol
+    
+  def get_packfrac(self):
+    return self.get_occvol/self.get_boxvol()
   
   def tile(cell, nx, ny, nz):
     a1, a2, a3 = cell.lattice_vectors
