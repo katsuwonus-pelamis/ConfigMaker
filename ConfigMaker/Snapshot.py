@@ -136,7 +136,7 @@ class Snapshot:
       if i == axis:
         box[i] = snap1.box[i] + snap2.box[i] + offset
       else:
-        box[i] = np.max(snap1.box[i], snap2.box[i])
+        box[i] = np.max((snap1.box[i], snap2.box[i]))
     
     for part in snap2.particles:
       part.pos[axis] += snap1.box[axis] + offset
