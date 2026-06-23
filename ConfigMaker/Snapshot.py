@@ -141,6 +141,11 @@ class Snapshot:
     for part in snap2.particles:
       part.pos[axis] += snap1.box[axis] + offset
     
+    
+    for part in snap2.particles:  
+      if part.pos[axis]- (snap1.box[axis] + offset)< 0:
+        print("what the hell!!")  
+    
     print(snap1.box,snap2.box, box)
     
     return Snapshot(N, box, snap1.particles + snap2.particles)
