@@ -65,6 +65,8 @@ class Snapshot:
   def get_packfrac(self):
     return self.get_occvol()/self.get_boxvol()
   
+  
+  
   def tile(cell, nx, ny, nz):
     a1, a2, a3 = cell.lattice_vectors
     new_particles = []
@@ -124,4 +126,20 @@ class Snapshot:
       if all(0 <= p.pos[i] < self.box[i] for i in range(3))
     ]
     self.NPart = len(self.particles)
+    
+    
+  def join_snaps(snap1, snap2, axis, offset = 0):
+    N = snap1.NPart + snap2.NPart
+    box = [None]*3
+    
+    for i in range(3):
+      if i == axis:
+        box[i] = snap1.box[i] + snap2.box[i] + offset
+      else:
+        box[i] = np.max(snap1.box[i], snap2.box[i])
+    
+    for part in snap2.particles:
+      part.pos[axis] += snap1.box[axis] + offset
+    
+    return Snapshot(N, box, snap1.particles + snap2.particles)
     
