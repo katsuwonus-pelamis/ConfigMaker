@@ -134,7 +134,7 @@ class Snapshot:
     
     for i in range(3):
       if i == axis:
-        box[i] = snap1.box[i] + snap2.box[i] + offset
+        box[i] = snap1.box[i] + snap2.box[i] + 2*offset  #same gap also on the other side
       else:
         box[i] = np.max((snap1.box[i], snap2.box[i]))
     
