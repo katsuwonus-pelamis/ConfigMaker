@@ -141,5 +141,7 @@ class Snapshot:
     for part in snap2.particles:
       part.pos[axis] += snap1.box[axis] + offset
     
+    print(snap1.box,snap2.box, box)
+    
     return Snapshot(N, box, snap1.particles + snap2.particles)
     
