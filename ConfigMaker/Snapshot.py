@@ -65,7 +65,20 @@ class Snapshot:
   def get_packfrac(self):
     return self.get_occvol()/self.get_boxvol()
   
-  
+  def get_composition(self):
+    if self.NPart == 0:
+      raise ValueError("No particles in the snapshot!")
+    n_small = 0
+    unique_diameters = set()
+    for part in self.particles:
+      d = part.diameter
+      unique_diameters.add(d)
+      if len(unique_diameters) > 2:
+        raise ValueError(f"Mixture contains more than two species! Found diameters: {unique_diameters}")
+      if d < 1:
+        n_small += 1
+    return n_small / self.NPart
+    
   
   def tile(cell, nx, ny, nz):
     a1, a2, a3 = cell.lattice_vectors
@@ -140,12 +153,6 @@ class Snapshot:
     
     for part in snap2.particles:
       part.pos[axis] += snap1.box[axis] + offset
-    
-    
-    for part in snap2.particles:  
-        print(part.pos)  
-    
-    print(snap1.box,snap2.box, box)
     
     return Snapshot(N, box, snap1.particles + snap2.particles)
     
