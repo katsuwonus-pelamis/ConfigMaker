@@ -10,9 +10,9 @@ class Spherocylinder:
   def read(line):
     parts = line.strip().split()
     specie = parts[0]
-    pos = [float(parts[1]), float(parts[2]), float(parts[3])]
+    pos = np.asarray([float(parts[1]), float(parts[2]), float(parts[3])])
     diameter = float(parts[4])
-    ori = [float(parts[5]), float(parts[6]), float(parts[7])]
+    ori = np.asarray([float(parts[5]), float(parts[6]), float(parts[7])])
     return Spherocylinder(pos, ori, diameter, specie)
   
   def write(self, filename):
@@ -27,8 +27,8 @@ class Spherocylinder:
     return Spherocylinder(sphere.pos,ori,sphere.radius*2, sphere.specie)
   
   def csv_to_rod(row):
-    pos = [row['POSITION_X'], row['POSITION_Y'], row['POSITION_Z']] 
-    ori = [np.cos(float(row["ELLIPSE_THETA"]))*float(row["ELLIPSE_MAJOR"]), np.sin(float(row["ELLIPSE_THETA"]))*float(row["ELLIPSE_MAJOR"]), 0]
+    pos = np.asarray([row['POSITION_X'], row['POSITION_Y'], row['POSITION_Z']] )
+    ori = np.asarray([np.cos(float(row["ELLIPSE_THETA"]))*float(row["ELLIPSE_MAJOR"]), np.sin(float(row["ELLIPSE_THETA"]))*float(row["ELLIPSE_MAJOR"]), 0])
     return Spherocylinder(pos, ori, row['RADIUS']*2, 'a')
   
   def get_volume(self):
