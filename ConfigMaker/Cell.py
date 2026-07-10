@@ -10,9 +10,9 @@ class Cell:
   def cubic_cell(a, l, diam=1):
     ori = [0,0,l]
     cubic_cell = Cell(
-    lattice_vectors = [[a, 0, 0],                        
-                        [0, a, 0],                
-                        [0,0, l+a]],
+    lattice_vectors = [np.asarray([a, 0, 0]),                        
+                        np.asarray([0, a, 0]),                
+                       np.asarray([0,0, l+a])],
     particles=[Spherocylinder([0, 0, 0],ori, diam, 'a')]
     )
     return cubic_cell
@@ -22,22 +22,22 @@ class Cell:
     h_step = l + np.sqrt(2/3) * a
 
     fcc_cell = Cell(
-      lattice_vectors = [[2 * a, 0, 0],                        
-                        [0, np.sqrt(3) * a, 0],                
-                        [0, 0, 3*h_step]],
+      lattice_vectors = [np.asarray([2 * a, 0, 0]),                        
+                        np.asarray([0, np.sqrt(3) * a, 0]),                
+                        np.asarray([0, 0, 3*h_step])],
       particles=[
-                  Spherocylinder([0, 0, 0], ori, diam, 'a'),
-                  Spherocylinder([a, 0, 0], ori, diam, 'a'),
-                  Spherocylinder([0.5*a, np.sqrt(3)/2*a, 0], ori, diam, 'a'),
-                  Spherocylinder([1.5*a, np.sqrt(3)/2*a, 0],ori,  diam, 'a'),
-                  Spherocylinder([0.5*a, np.sqrt(3)/6*a, h_step],ori, diam,'a'),
-                  Spherocylinder([0*a, 2*np.sqrt(3)/3*a, h_step],ori, diam,'a'),
-                  Spherocylinder([1.5*a, np.sqrt(3)/6*a, h_step],ori, diam,'a'),
-                  Spherocylinder([1*a, 2*np.sqrt(3)/3*a, h_step],ori, diam,'a'),
-                  Spherocylinder([0,         (np.sqrt(3)/3)*a,               2*h_step], ori, diam, 'a'),
-                  Spherocylinder([1*a,       (np.sqrt(3)/3)*a,               2*h_step], ori, diam, 'a'),
-                  Spherocylinder([0.5*a,     (np.sqrt(3)/2 + np.sqrt(3)/3)*a,2*h_step], ori, diam, 'a'),
-                  Spherocylinder([1.5*a,     (np.sqrt(3)/2 + np.sqrt(3)/3)*a,2*h_step], ori, diam, 'a')]
+                  Spherocylinder(np.asarray([0, 0, 0]), ori, diam, 'a'),
+                  Spherocylinder(np.asarray([a, 0, 0]), ori, diam, 'a'),
+                  Spherocylinder(np.asarray([0.5*a, np.sqrt(3)/2*a, 0]), ori, diam, 'a'),
+                  Spherocylinder(np.asarray([1.5*a, np.sqrt(3)/2*a, 0]),ori,  diam, 'a'),
+                  Spherocylinder(np.asarray([0.5*a, np.sqrt(3)/6*a, h_step]),ori, diam,'a'),
+                  Spherocylinder(np.asarray([0*a, 2*np.sqrt(3)/3*a, h_step]),ori, diam,'a'),
+                  Spherocylinder(np.asarray([1.5*a, np.sqrt(3)/6*a, h_step]),ori, diam,'a'),
+                  Spherocylinder(np.asarray([1*a, 2*np.sqrt(3)/3*a, h_step]),ori, diam,'a'),
+                  Spherocylinder(np.asarray([0,         (np.sqrt(3)/3)*a,               2*h_step]), ori, diam, 'a'),
+                  Spherocylinder(np.asarray([1*a,       (np.sqrt(3)/3)*a,               2*h_step]), ori, diam, 'a'),
+                  Spherocylinder(np.asarray([0.5*a,     (np.sqrt(3)/2 + np.sqrt(3)/3)*a,2*h_step]), ori, diam, 'a'),
+                  Spherocylinder(np.asarray([1.5*a,     (np.sqrt(3)/2 + np.sqrt(3)/3)*a,2*h_step]), ori, diam, 'a')]
       )
     return fcc_cell
   
@@ -47,18 +47,18 @@ class Cell:
     h_step = l + np.sqrt(2/3) * a
 
     hex_cell = Cell(
-      lattice_vectors = [[2 * a, 0, 0],                        
-                        [0, np.sqrt(3) * a, 0],                
-                        [0, 0, 2*h_step]],
+      lattice_vectors = [np.asarray([2 * a, 0, 0]),                        
+                        np.asarray([0, np.sqrt(3) * a, 0]),                
+                        np.asarray([0, 0, 2*h_step])],
       particles=[
-                  Spherocylinder([0, 0, 0], ori, diam, 'a'),
-                  Spherocylinder([a, 0, 0], ori, diam, 'a'),
-                  Spherocylinder([0.5*a, np.sqrt(3)/2*a, 0], ori, diam, 'a'),
-                  Spherocylinder([1.5*a, np.sqrt(3)/2*a, 0],ori,  diam, 'a'),
-                  Spherocylinder([0.5*a, np.sqrt(3)/6*a, h_step],ori, diam,'a'),
-                  Spherocylinder([0, 2*np.sqrt(3)/3*a, h_step],ori, diam,'a'),
-                  Spherocylinder([1.5*a, np.sqrt(3)/6*a, h_step],ori, diam,'a'),
-                  Spherocylinder([1*a, 2*np.sqrt(3)/3*a, h_step],ori, diam,'a')]
+                  Spherocylinder(np.asarray([0, 0, 0]), ori, diam, 'a'),
+                  Spherocylinder(np.asarray([a, 0, 0]), ori, diam, 'a'),
+                  Spherocylinder(np.asarray([0.5*a, np.sqrt(3)/2*a, 0]), ori, diam, 'a'),
+                  Spherocylinder(np.asarray([1.5*a, np.sqrt(3)/2*a, 0]),ori,  diam, 'a'),
+                  Spherocylinder(np.asarray([0.5*a, np.sqrt(3)/6*a, h_step]),ori, diam,'a'),
+                  Spherocylinder(np.asarray([0, 2*np.sqrt(3)/3*a, h_step]),ori, diam,'a'),
+                  Spherocylinder(np.asarray([1.5*a, np.sqrt(3)/6*a, h_step]),ori, diam,'a'),
+                  Spherocylinder(np.asarray([1*a, 2*np.sqrt(3)/3*a, h_step]),ori, diam,'a')]
       )
     return hex_cell
     
@@ -66,12 +66,12 @@ class Cell:
     ori = [0,0,l]
     h_step = l + np.sqrt(2)/2 * a
     cubic_cell = Cell(
-    lattice_vectors = [ [a, 0, 0],                        
-                        [0, a, 0],                
-                        [0,0, 2*h_step]],
-    particles=[ Spherocylinder([0, 0, 0], ori, diam1, 'a'),
-                Spherocylinder([a/2., a/2., 0],ori, diam2, 'b'),
-                Spherocylinder([0, 0, h_step], ori, diam2, 'b'),
-                Spherocylinder([a/2., a/2., h_step], ori, diam1, 'a')]
+    lattice_vectors = [np.asarray( [a, 0, 0]),                        
+                       np.asarray( [0, a, 0]),                
+                        np.asarray([0,0, 2*h_step])],
+    particles=[ Spherocylinder(np.asarray([0, 0, 0]), ori, diam1, 'a'),
+                Spherocylinder(np.asarray([a/2., a/2., 0]),ori, diam2, 'b'),
+                Spherocylinder(np.asarray([0, 0, h_step]), ori, diam2, 'b'),
+                Spherocylinder(np.asarray([a/2., a/2., h_step]), ori, diam1, 'a')]
     )
     return cubic_cell
