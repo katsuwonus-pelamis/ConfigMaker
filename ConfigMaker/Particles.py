@@ -34,6 +34,61 @@ class Spherocylinder:
   def get_volume(self):
     return np.pi * self.diameter**2 * (np.linalg.norm(self.ori)+ 2./3. * self.diameter)/ 4
   
+
+  def spherocylinder_distance(r1, r2, threshold=1e-10):
+    # Assuming r1.pos, r2.pos, r1.ori, r2.ori are all 1D NumPy arrays
+    r12 = r2.pos - r1.pos
+    
+    xl1 = np.linalg.norm(r1.ori)/2.
+    xl2 = np.linalg.norm(r2.ori)/2.
+    ori1 = r1.ori/np.linalg.norm(r1.ori)
+    ori2 = r2.ori/np.linalg.norm(r2.ori)
+    
+    # NumPy dot product syntax
+    u12 = np.dot(ori1, ori2)
+    ru1 = np.dot(r12, ori1)
+    ru2 = np.dot(r12, ori2)
+    
+    cc = 1.0 - u12 * u12  # 0-or-so if parallel
+    lam = 0.0
+    mu = 0.0
+    
+    if abs(cc) < threshold:
+        if ru1 != 0:
+            lam = np.copysign(xl1, ru1)
+            mu = lam * u12 - ru2
+            if abs(mu) > xl2:
+                mu = np.copysign(xl2, mu)
+        else:
+            lam = 0.0
+            mu = 0.0
+    else:
+        lam = (ru1 - u12 * ru2) / cc  # first actual guess
+        mu = (-ru2 + u12 * ru1) / cc
+        
+        if abs(lam) > xl1 or abs(mu) > xl2:
+            aux1 = abs(lam) - xl1
+            aux2 = abs(mu) - xl2
+            if aux1 > aux2:
+                lam = np.copysign(xl1, lam)
+                mu = lam * u12 - ru2
+                if abs(mu) > xl2:
+                    mu = np.copysign(xl2, mu)
+            else:
+                mu = np.copysign(xl2, mu)
+                lam = mu * u12 + ru1
+                if abs(lam) >= xl1:
+                    lam = np.copysign(xl1, lam)
+                    
+
+    r12_norm2 = np.dot(r12, r12)
+    
+    return (r12_norm2 + lam**2 + mu**2 - 2.0 * lam * mu * u12 
+            + 2.0 * mu * ru2 - 2.0 * lam * ru1)
+    
+    
+    
+  
   
 class Sphere:
 
