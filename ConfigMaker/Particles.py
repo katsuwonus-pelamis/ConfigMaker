@@ -85,10 +85,12 @@ class Spherocylinder:
     
     return (r12_norm2 + lam**2 + mu**2 - 2.0 * lam * mu * u12 
             + 2.0 * mu * ru2 - 2.0 * lam * ru1)
-    
-    
-    
-  
+   
+   
+  def overlap(p1, p2):
+    dist2 = Spherocylinder.spherocylinder_distance(p1, p2)
+    if dist2 > (p1.diameter+p2.diameter)/2.: return False
+    else: return True
   
 class Sphere:
 

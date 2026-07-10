@@ -156,3 +156,10 @@ class Snapshot:
     
     return Snapshot(N, box, snap1.particles + snap2.particles)
     
+    
+  def all_good(self):
+    for i in range(self.NPart):
+      for j in range(i + 1, self.NPart):
+        if Spherocylinder.overlap(self.particles[i], self.particles[j]):
+          return False
+    return True
