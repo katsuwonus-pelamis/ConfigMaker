@@ -68,7 +68,7 @@ class Cell:
     cubic_cell = Cell(
     lattice_vectors = [np.asarray( [a, 0, 0]),                        
                        np.asarray( [0, a, 0]),                
-                        np.asarray([0,0, 2*h_step])],
+                      np.asarray([0,0, 2*h_step])],
     particles=[ Spherocylinder(np.asarray([0, 0, 0]), ori, diam1, 'a'),
                 Spherocylinder(np.asarray([a/2., a/2., 0]),ori, diam2, 'b'),
                 Spherocylinder(np.asarray([0, 0, h_step]), ori, diam2, 'b'),
