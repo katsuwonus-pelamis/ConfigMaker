@@ -1,5 +1,6 @@
 from .Particles import * 
 import numpy as np
+import copy 
 
 class Snapshot:
   def __init__(self, NPart, box, particles):
@@ -155,11 +156,15 @@ class Snapshot:
       part.pos[axis] += snap1.box[axis] + offset
     
     return Snapshot(N, box, snap1.particles + snap2.particles)
+
+
     
     
   def all_good(self):
     for i in range(self.NPart):
       for j in range(i + 1, self.NPart):
         if Spherocylinder.overlap(self.particles[i], self.particles[j]):
+          print(self.particles[i].pos, self.particles[i].ori)
+          print(self.particles[j].pos, self.particles[j].ori)
           return False
     return True

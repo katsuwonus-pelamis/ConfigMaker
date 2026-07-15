@@ -37,12 +37,12 @@ class Spherocylinder:
 
   def spherocylinder_distance(r1, r2, threshold=1e-10):
     # Assuming r1.pos, r2.pos, r1.ori, r2.ori are all 1D NumPy arrays
-    r12 = r2.pos - r1.pos
+    r12 = np.asarray(r2.pos) - np.asarray(r1.pos)
     
     xl1 = np.linalg.norm(r1.ori)/2.
     xl2 = np.linalg.norm(r2.ori)/2.
-    ori1 = r1.ori/np.linalg.norm(r1.ori)
-    ori2 = r2.ori/np.linalg.norm(r2.ori)
+    ori1 = np.asarray(r1.ori)/np.linalg.norm(r1.ori)
+    ori2 = np.asarray(r2.ori)/np.linalg.norm(r2.ori)
     
     # NumPy dot product syntax
     u12 = np.dot(ori1, ori2)
