@@ -77,4 +77,20 @@ class Cell:
     return cubic_cell
   
   
-  def flat_empty_hex_cell()
+  def flat_empty_hex_cell(a, l, diam):
+    ori = [0, 0, l]
+    flat_cell = Cell(
+    lattice_vectors = [np.asarray([np.nan, np.nan, np.nan]),  #it will not work on purpose, cell is not supposed to be used for tiling                       
+                       np.asarray([np.nan, np.nan, np.nan]),                
+                       np.asarray([np.nan, np.nan, np.nan])],
+    
+    particles=[ Spherocylinder(np.asarray([2*a,                      a, 0]), ori, diam, 'a'),
+                Spherocylinder(np.asarray([0.,                       a, 0]), ori, diam, 'a'),
+                Spherocylinder(np.asarray([3./2.*a, (1-np.sqrt(3)/2*a), 0]), ori, diam, 'a'),
+                Spherocylinder(np.asarray([3./2.*a, (1+np.sqrt(3)/2*a), 0]), ori, diam, 'a'),
+                Spherocylinder(np.asarray([1./2.*a, (1-np.sqrt(3)/2*a), 0]), ori, diam, 'a'),
+                Spherocylinder(np.asarray([1./2.*a, (1+np.sqrt(3)/2*a), 0]), ori, diam, 'a')]
+        
+        
+    )
+    return flat_cell
