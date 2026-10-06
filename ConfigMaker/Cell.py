@@ -75,3 +75,6 @@ class Cell:
                 Spherocylinder(np.asarray([a/2., a/2., h_step]), ori, diam1, 'a')]
     )
     return cubic_cell
+  
+  
+  def flat_empty_hex_cell()
